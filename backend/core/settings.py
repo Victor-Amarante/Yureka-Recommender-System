@@ -65,8 +65,6 @@ SOCIALACCOUNT_PROVIDERS = {
     }
 }
 
-
-
 ROOT_URLCONF = 'core.urls'
 
 TEMPLATES = [
