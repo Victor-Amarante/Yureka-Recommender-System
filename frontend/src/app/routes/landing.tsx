@@ -1,3 +1,5 @@
+import watching from '@/assets/watching.json';
+import Lottie from 'react-lottie';
 import { useNavigate } from 'react-router';
 
 import LandingHeader from '@/components/shared/LandingHeader';
@@ -21,29 +23,45 @@ const LandingRoute = () => {
     <div>
       <LandingHeader />
 
-      <div className="flex flex-col w-full justify-center md:text-4xl lg:text-5xl sm:text-3xl text-2xl text-white dark:text-muted font-normal overflow-hidden p-16 pt-48 mx-auto font-righteous tracking-widest">
-        <span className="text-6xl w-full text-center mx-auto">
-          {'TENHA CONTROLE DO'}
-        </span>
-        <div className="flex w-full">
-          <span className="text-6xl w-full text-end">{'SEU'}</span>
+      <div className="flex flex-row justify-between items-center p-16 pt-36">
+        <div className="w-min md:text-4xl lg:text-5xl sm:text-3xl text-2xl text-white dark:text-muted font-normal overflow-hidden font-righteous tracking-widest">
+          <span className="text-6xl block whitespace-nowrap">
+            {'TENHA CONTROLE'}
+          </span>
+          <span className="text-6xl w-full text-end">{'DO SEU'}</span>
 
           <Typewriter
             speed={40}
-            className="text-6xl w-full text-purple-400 px-4 rounded-lg"
-            waitTime={1500}
+            className="text-6xl text-purple-400 px-4 rounded-lg"
+            waitTime={2000}
             deleteSpeed={40}
             cursorChar={'_'}
             text={['TEMPO', 'FOCO', 'DIA']}
           />
+
+          <p className="text-gray-300 mx-auto mt-4 text-start break-words text-lg md:text-xl font-outfit tracking-normal">
+            <strong>YuReka</strong> é a plataforma que adapta{' '}
+            <strong>conteúdo de qualidade</strong> ao seu{' '}
+            <strong>tempo disponível</strong>. Aproveite cada momento com{' '}
+            <strong>vídeos personalizados</strong> para sua{' '}
+            <strong>rotina</strong>.
+          </p>
         </div>
-        <p className="text-gray-300 mx-auto mt-4 w-3/5 text-center break-words text-lg md:text-xl font-outfit tracking-normal">
-          <strong>YuReka</strong> é a plataforma que adapta{' '}
-          <strong>conteúdo de qualidade</strong> ao seu{' '}
-          <strong>tempo disponível</strong>. Aproveite cada momento com{' '}
-          <strong>vídeos personalizados</strong> para sua{' '}
-          <strong>rotina</strong>.
-        </p>
+
+        <div>
+          <Lottie
+            options={{
+              loop: true,
+              autoplay: true,
+              animationData: watching,
+              rendererSettings: {
+                preserveAspectRatio: 'xMidYMid slice',
+              },
+            }}
+            height={400}
+            width={400}
+          />
+        </div>
       </div>
     </div>
   );
