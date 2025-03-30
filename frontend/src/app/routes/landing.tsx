@@ -2,9 +2,9 @@ import watching from '@/assets/watching.json';
 import Lottie from 'react-lottie';
 import { useNavigate } from 'react-router';
 
+import Typewriter from '@/components/fancy/components/text/typewriter';
 import LandingHeader from '@/components/shared/LandingHeader';
 import { paths } from '@/config/paths';
-import Typewriter from '@/fancy/components/text/typewriter';
 import { useUser } from '@/lib/auth';
 
 const LandingRoute = () => {
@@ -13,7 +13,7 @@ const LandingRoute = () => {
 
   const handleStart = () => {
     if (user.data) {
-      navigate(paths.app.dashboard.getHref());
+      navigate(paths.app.home.getHref());
     } else {
       navigate(paths.auth.login.getHref());
     }
