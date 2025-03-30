@@ -1,6 +1,6 @@
 
 export const paths = {
-	home: {
+	landing: {
 		path: '/',
 		getHref: () => '/',
 	},
