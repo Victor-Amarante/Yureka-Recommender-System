@@ -1,4 +1,4 @@
-export default function DottedBackground() {
+export function DottedBackground() {
   return (
     <>
       <div className="absolute top-0 left-0 right-0 h-[70vh] bg-gradient-to-b from-purple-900/20 to-transparent z-0"></div>

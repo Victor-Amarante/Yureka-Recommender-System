@@ -1,4 +1,4 @@
-import DottedBackground from '@/components/layouts/DottedBackground';
+import { DottedBackground } from '@/components/layouts';
 import { Head } from '@/components/seo';
 import { AppProvider } from './provider';
 import { AppRouter } from './router';

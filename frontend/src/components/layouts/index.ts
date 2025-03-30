@@ -1,2 +1,4 @@
-export * from './content-layout';
-export * from './dashboard-layout';
+export * from './AppLayout';
+export * from './auth-layout';
+export * from './DottedBackground';
+
