@@ -86,7 +86,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-gradient-overlay bg-dotted-pattern bg-dots;
   }
 }
 
