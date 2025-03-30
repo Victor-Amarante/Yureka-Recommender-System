@@ -20,10 +20,10 @@ const LandingRoute = () => {
   };
 
   return (
-    <div>
+    <div className="w-screen h-screen">
       <LandingHeader />
 
-      <div className="flex flex-row justify-between items-center p-16 pt-36">
+      <div className="flex flex-row max-w-relative justify-between items-center p-16 pt-36">
         <div className="w-min md:text-4xl lg:text-5xl sm:text-3xl text-2xl text-white dark:text-muted font-normal overflow-hidden font-righteous tracking-widest">
           <span className="text-6xl block whitespace-nowrap">
             {'TENHA CONTROLE'}
