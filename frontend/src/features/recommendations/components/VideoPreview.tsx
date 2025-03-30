@@ -1,6 +1,6 @@
 import { Clock, Share2, Star } from 'lucide-react';
 
-export default function VideoPreview() {
+export function VideoPreview() {
   return (
     <div className="group">
       <div className="relative aspect-video overflow-hidden rounded-t-lg">

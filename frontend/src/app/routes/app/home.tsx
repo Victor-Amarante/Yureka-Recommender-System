@@ -1,4 +1,4 @@
-import Feed from '@/features/recommendations/components/Feed';
+import { Feed } from '@/features/recommendations';
 
 const ProfileImage = () => (
   <img
