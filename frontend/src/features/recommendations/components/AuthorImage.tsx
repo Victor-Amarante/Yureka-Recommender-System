@@ -1,11 +1,31 @@
-export default function AuthorImage() {
+import { Avatar } from '@/components/ui/avatar';
+import { cn } from '@/lib/utils';
+import {
+  AvatarFallback,
+  AvatarImage,
+  AvatarProps,
+} from '@radix-ui/react-avatar';
+
+interface AuthorImageProps extends AvatarProps {
+  src: string;
+  channel: string;
+  size?: number;
+}
+
+export default function AuthorImage({
+  channel,
+  size,
+  src,
+  className,
+  ...props
+}: AuthorImageProps) {
   return (
-    <img
-      src="https://github.com/eliseucbrito.png"
-      className="w-[10%] h-[10%] aspect-square absolute mt-[-60px] z-10 rounded-full border-4 border-black flex justify-center items-center"
-      width={345}
-      height={200}
-      alt=""
-    />
+    <Avatar
+      className={cn('w-16 h-16', { size: `w-${size} h-${size}` }, className)}
+      {...props}
+    >
+      <AvatarImage src={src} alt={`@${channel}`} />
+      <AvatarFallback></AvatarFallback>
+    </Avatar>
   );
 }
