@@ -30,7 +30,7 @@
     "@tanstack/react-query": "^5.32.0",
     "@tanstack/react-query-devtools": "^5.32.0",
     "@types/react-lottie": "^1.2.10",
-    "axios": "^1.6.8",
+    "axios": "^1.8.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "dayjs": "^1.11.11",
@@ -71,9 +71,7 @@
     "@testing-library/react": "^15.0.5",
     "@testing-library/user-event": "^14.5.2",
     "@types/cors": "^2.8.17",
-    "@types/dompurify": "^3.0.5",
     "@types/js-cookie": "^3.0.6",
-    "@types/marked": "^6.0.0",
     "@types/node": "^20.12.7",
     "@types/react": "^18.3.1",
     "@types/react-dom": "^18.3.0",
@@ -82,7 +80,7 @@
     "@vitejs/plugin-react": "^4.2.1",
     "autoprefixer": "^10.4.19",
     "cors": "^2.8.5",
-    "eslint": "8",
+    "eslint": "^9.23.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
@@ -124,5 +122,10 @@
       "pnpm lint",
       "bash -c 'pnpm check-types'"
     ]
+  },
+  "pnpm": {
+    "overrides": {
+      "esbuild@<=0.24.2": ">=0.25.0"
+    }
   }
 }
