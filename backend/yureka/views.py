@@ -4,9 +4,7 @@ from rest_framework.decorators import action, api_view
 from datetime import datetime
 from .models import User, Topic, UserTopic, UserRoutine, Video, Blacklist
 from .serializers import (
-    UserSerializer, TopicSerializer, UserTopicSerializer, VideoSerializer,
-    CuratedVideoSerializer, VideoTopicSerializer, UserRoutineSerializer,
-    VideoMetricsSerializer, BlacklistSerializer
+    UserSerializer, TopicSerializer, UserTopicSerializer, VideoSerializer, UserRoutineSerializer, BlacklistSerializer
 )
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -22,7 +20,7 @@ class UserTopicViewSet(viewsets.ModelViewSet):
     serializer_class = UserTopicSerializer
 
     @action(detail=False, methods=['get'])
-    def interesses(self, request):
+    def interests(self, request):
         topics = Topic.objects.all()
         serializer = TopicSerializer(topics, many=True)
         return Response(serializer.data)
@@ -32,7 +30,7 @@ class UserRoutineViewSet(viewsets.ModelViewSet):
     serializer_class = UserRoutineSerializer
 
     @action(detail=False, methods=['post'])
-    def cadastrar_rotina(self, request):
+    def register_routine(self, request):
         serializer = UserRoutineSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -40,7 +38,7 @@ class UserRoutineViewSet(viewsets.ModelViewSet):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     @action(detail=False, methods=['get'])
-    def devolver_rotina(self, request):
+    def get_routine(self, request):
         user_id = request.query_params.get('user_id')
         routines = UserRoutine.objects.filter(user_id=user_id)
         serializer = UserRoutineSerializer(routines, many=True)
@@ -51,7 +49,7 @@ class VideoViewSet(viewsets.ModelViewSet):
     serializer_class = VideoSerializer
 
     @action(detail=False, methods=['get'])
-    def recomendar_videos(self, request):
+    def recommend_videos(self, request):
         user_id = request.query_params.get('user_id')
         routines = UserRoutine.objects.filter(user_id=user_id)
         topics = routines.values_list('topic_id', flat=True)
