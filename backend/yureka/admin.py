@@ -1,8 +1,7 @@
 from django.contrib import admin
-from yureka.domain.models import (
-  User, SocialAuth, Topic, UserTopic, Video, CuratedVideo, 
-  VideoTopic, UserRoutine, VideoMetric, Blacklist
-)
+from yureka.models import (User, SocialAuth, Topic, UserTopic, Video,
+                           CuratedVideo, VideoTopic, UserRoutine, VideoMetrics,
+                           Blacklist)
 
 
 # Register your models here.
@@ -14,5 +13,5 @@ admin.site.register(Video)
 admin.site.register(CuratedVideo)
 admin.site.register(VideoTopic)
 admin.site.register(UserRoutine)
-admin.site.register(VideoMetric)
+admin.site.register(VideoMetrics)
 admin.site.register(Blacklist)
