@@ -17,7 +17,7 @@ class SocialAuthSerializer(serializers.ModelSerializer):
 class TopicSerializer(serializers.ModelSerializer):
     class Meta:
         model = Topic
-        fields = '__all__'
+        fields = ['id', 'name', 'description']
 
 class UserTopicSerializer(serializers.ModelSerializer):
     class Meta:
@@ -27,7 +27,8 @@ class UserTopicSerializer(serializers.ModelSerializer):
 class VideoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Video
-        fields = '__all__'
+        fields = ['id', 'title', 'description', 'duration', 'channel_id', 
+                 'channel_name', 'views', 'created_at']
 
 class CuratedVideoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,9 +41,11 @@ class VideoTopicSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class UserRoutineSerializer(serializers.ModelSerializer):
+    topic = TopicSerializer(read_only=True)
+    
     class Meta:
         model = UserRoutine
-        fields = '__all__'
+        fields = ['id', 'start_time', 'end_time', 'topic']
 
 class VideoMetricsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -53,3 +56,10 @@ class BlacklistSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blacklist
         fields = '__all__'
+
+class UserInterestsSerializer(serializers.ModelSerializer):
+    topics = TopicSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = User
+        fields = ['topics']
