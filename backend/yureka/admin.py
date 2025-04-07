@@ -24,8 +24,8 @@ class TopicAdmin(admin.ModelAdmin):
 
 @admin.register(Video)
 class VideoAdmin(admin.ModelAdmin):
-    list_display = ('title', 'channel_name', 'views', 'created_at')
-    search_fields = ('title', 'channel_name')
+    list_display = ('title', 'channel', 'views', 'created_at')
+    search_fields = ('title', 'channel__name')
 
 @admin.register(CuratedVideo)
 class CuratedVideoAdmin(admin.ModelAdmin):
