@@ -76,8 +76,8 @@ SITE_ID = 1
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-            'client_id': '186442402101-ss9e5utmi9k6bp34bu3rqjm3qj4j1ueh.apps.googleusercontent.com',
-            'secret': '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',
+            'client_id': os.getenv('GOOGLE_CLIENT_ID'),
+            'secret': os.getenv('GOOGLE_SECRET_ID'),
             'key': ''
         }
     }
@@ -110,11 +110,11 @@ WSGI_APPLICATION = 'core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv('DB_NAME', 'postgres'),
-        'USER': os.getenv('DB_USER', 'postgres.cazccjprhlplfzpzozfg'),
-        'PASSWORD': os.getenv('DB_PASSWORD', 'yureka2024'),
-        'HOST': os.getenv('DB_HOST', 'aws-0-sa-east-1.pooler.supabase.com'),
-        'PORT': os.getenv('DB_PORT', '5432'),
+        'NAME': os.getenv('DB_NAME'),
+        'USER': os.getenv('DB_USER'),
+        'PASSWORD': os.getenv('DB_PASSWORD'),
+        'HOST': os.getenv('DB_HOST'),
+        'PORT': os.getenv('DB_PORT'),
     }
 }
 
