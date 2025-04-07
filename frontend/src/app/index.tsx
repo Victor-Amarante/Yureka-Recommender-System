@@ -1,4 +1,4 @@
-import DottedBackground from '@/components/layouts/DottedBackground';
+import { DottedBackground } from '@/components/layouts';
 import { Head } from '@/components/seo';
 import { AppProvider } from './provider';
 import { AppRouter } from './router';
@@ -8,11 +8,9 @@ export const App = () => {
     <AppProvider>
       <Head description="YuReka" />
 
-      <div className="w-screen h-screen bg-[#0F0F13] relative">
+      <div className="w-full h-full bg-[#0F0F13] relative">
         <DottedBackground />
-        <div className="w-full h-full max-w-[1440px] mx-auto">
-          <AppRouter />
-        </div>
+        <AppRouter />
       </div>
     </AppProvider>
   );

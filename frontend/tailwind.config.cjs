@@ -10,7 +10,8 @@ module.exports = {
   		center: true,
   		padding: '2rem',
   		screens: {
-  			'2xl': '1400px'
+  			'2xl': '100rem',
+			'3xl': '120rem',
   		}
   	},
   	extend: {
@@ -22,6 +23,13 @@ module.exports = {
 			righteous: ['Righteous', 'cursive'],
 			outfit: ['Outfit', ...defaultTheme.fontFamily.sans],
   		},
+		backgroundImage: {
+			'dotted-pattern': 'radial-gradient(#ffffff 1px, transparent 1px)',
+			'gradient-overlay': 'linear-gradient(to bottom, rgba(74,29,115,0.2), transparent)',
+		},
+		backgroundSize: {
+			'dots': '20px 20px',
+		},
   		colors: {
   			border: 'hsl(var(--border))',
   			input: 'hsl(var(--input))',
@@ -93,5 +101,20 @@ module.exports = {
   		}
   	}
   },
-  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography')],
+  plugins: [require('tailwindcss-animate'), require('@tailwindcss/typography'), 
+    function ({ addComponents }) {
+      addComponents({
+        ".max-w-relative": {
+          width: "100%",
+		  margin: '0 auto',
+          maxWidth: "420px",
+          "@screen sm": { maxWidth: "576px" },
+          "@screen md": { maxWidth: "720px" },
+          "@screen lg": { maxWidth: "960px" },
+          "@screen xl": { maxWidth: "1200px" },
+          "@screen 2xl": { maxWidth: "1440px" },
+        },
+      });
+    },
+  ],
 };

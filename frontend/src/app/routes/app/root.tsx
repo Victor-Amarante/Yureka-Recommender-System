@@ -1,6 +1,5 @@
+import { AppLayout } from '@/components/layouts';
 import { Outlet } from 'react-router';
-
-import { DashboardLayout } from '@/components/layouts';
 
 export const ErrorBoundary = () => {
   return <div>Something went wrong!</div>;
@@ -8,9 +7,9 @@ export const ErrorBoundary = () => {
 
 const AppRoot = () => {
   return (
-    <DashboardLayout>
+    <AppLayout>
       <Outlet />
-    </DashboardLayout>
+    </AppLayout>
   );
 };
 

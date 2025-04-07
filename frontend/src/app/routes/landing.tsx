@@ -2,9 +2,9 @@ import watching from '@/assets/watching.json';
 import Lottie from 'react-lottie';
 import { useNavigate } from 'react-router';
 
+import Typewriter from '@/components/fancy/components/text/typewriter';
 import LandingHeader from '@/components/shared/LandingHeader';
 import { paths } from '@/config/paths';
-import Typewriter from '@/fancy/components/text/typewriter';
 import { useUser } from '@/lib/auth';
 
 const LandingRoute = () => {
@@ -13,17 +13,17 @@ const LandingRoute = () => {
 
   const handleStart = () => {
     if (user.data) {
-      navigate(paths.app.dashboard.getHref());
+      navigate(paths.app.home.getHref());
     } else {
       navigate(paths.auth.login.getHref());
     }
   };
 
   return (
-    <div>
+    <div className="w-screen h-screen">
       <LandingHeader />
 
-      <div className="flex flex-row justify-between items-center p-16 pt-36">
+      <div className="flex flex-row max-w-relative justify-between items-center p-16 pt-36">
         <div className="w-min md:text-4xl lg:text-5xl sm:text-3xl text-2xl text-white dark:text-muted font-normal overflow-hidden font-righteous tracking-widest">
           <span className="text-6xl block whitespace-nowrap">
             {'TENHA CONTROLE'}
