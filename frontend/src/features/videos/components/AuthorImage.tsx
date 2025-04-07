@@ -8,7 +8,7 @@ import {
 import { Link } from 'react-router';
 
 interface AuthorImageProps extends AvatarProps {
-  src: string;
+  src?: string;
   channel_name: string;
   channel_id: string;
   size?: number;
@@ -29,7 +29,7 @@ export default function AuthorImage({
         {...props}
       >
         <AvatarImage src={src} alt={`@${channel_name}`} />
-        <AvatarFallback>
+        <AvatarFallback className="text-white flex justify-center items-center w-full bg-purple-600 font-bold text-2xl">
           {channel_name
             .split(' ')
             .map((v) => v[0].toUpperCase())

@@ -8,7 +8,7 @@ export const App = () => {
     <AppProvider>
       <Head description="YuReka" />
 
-      <div className="w-full h-full bg-[#0F0F13] relative">
+      <div className="w-full h-full bg-[#0F0F13] relative overflow-hidden overscroll-behavior: none;">
         <DottedBackground />
         <AppRouter />
       </div>

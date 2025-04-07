@@ -103,3 +103,21 @@ code {
   font-family:
     source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: black;
+  z-index: 1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #b088fd; /* cor roxa */
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #7e22ce; /* cor roxa mais escura no hover */
+}
