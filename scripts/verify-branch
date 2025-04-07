@@ -11,7 +11,7 @@ fi
 
 if [ $branchName == 'develop' ]
 then
-  echo -e "\n🚫 Cannot push to remote develop branch, please create your own branch and use PR."
+  echo -e "\n🚫 Cannot push to remote develop branch, please create your own branch and use PR." && exit 1
 fi
 
 if [[ $branchName = *[![:ascii:]]* ]]

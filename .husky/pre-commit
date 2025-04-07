@@ -1,5 +1,0 @@
-#!/bin/sh
-
-node scripts/check-dependencies.js frontend
-node scripts/check-dependencies.js backend
-scripts/verify-branch

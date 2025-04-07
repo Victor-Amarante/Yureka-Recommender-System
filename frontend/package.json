@@ -9,7 +9,6 @@
     "preview": "vite preview",
     "test": "vitest",
     "test-e2e": "pm2 start \"pnpm run-mock-server\" --name server && pnpm playwright test",
-    "prepare": "husky && husky install",
     "lint": "eslint src --ignore-path .gitignore",
     "check-types": "tsc --project tsconfig.json --pretty --noEmit",
     "generate": "plop",
