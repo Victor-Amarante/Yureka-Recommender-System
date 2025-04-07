@@ -92,7 +92,7 @@ export default function AppNavbar() {
                 <span className="sr-only">History</span>
               </Button>
 
-              <Link to="/topics">
+              <Link to="/app/topics">
                 <Button
                   variant="ghost"
                   size="icon"
