@@ -1,10 +1,12 @@
 import Divider from '@/components/shared/Divider';
 import Subtitle from '@/components/shared/Subtitle';
+import { paths } from '@/config/paths';
 import { formatDistanceToNow } from 'date-fns';
 import { ptBR } from 'date-fns/locale';
 import { Clock, EllipsisVertical, Eye } from 'lucide-react';
 import { Link } from 'react-router';
-import formatViews from '../utils/formatViews';
+import formatViews from '../../utils/formatViews';
+import { formatRelativeDate } from '@/utils/formats';
 
 interface VideoPreviewDetailsProps {
   title: String;
@@ -24,9 +26,9 @@ export default function VideoPreviewDetails({
   views,
 }: VideoPreviewDetailsProps) {
   return (
-    <div className="px-2 py-2 justify-start">
+    <div className="w-full p-2 justify-start">
       <div className="flex flex-row items-start justify-between">
-        <Link to={`/watch/${video_id}`}>
+        <Link to={paths.app.watch.getHref(video_id)}>
           <h3
             className="text-white font-medium text-lg line-clamp-2 mb-2"
             style={{ fontFamily: 'var(--font-outfit)' }}
@@ -40,27 +42,21 @@ export default function VideoPreviewDetails({
         </button>
       </div>
 
-      <div className="flex items-center min-w-0">
+      <div className="flex flex-row items-center space-x-2">
         <Link to={`/channel/${channel_id}`} className="truncate max-w-[40%]">
           <Subtitle className="text-white truncate">{channel_name}</Subtitle>
         </Link>
         <Divider />
-        <div className="flex items-center min-w-0">
+        <div className="flex flex-row space-x-1 items-center">
           <Clock className="w-4 h-4 text-gray-400" />
-          <Subtitle className="ml-1 truncate">
-            {formatDistanceToNow(new Date(publication_at), {
-              includeSeconds: false,
-              addSuffix: false,
-              locale: ptBR,
-            })
-              .replace('cerca de ', '')
-              .replace('aproximadamente ', '')}
+          <Subtitle className="truncate">
+            {formatRelativeDate(publication_at)}
           </Subtitle>
         </div>
         <Divider />
-        <div className="flex items-center">
+        <div className="flex flex-row space-x-1 items-center">
           <Eye className="w-4 h-4 text-gray-400" />
-          <Subtitle className="ml-1">{formatViews(views)}</Subtitle>
+          <Subtitle>{formatViews(views)}</Subtitle>
         </div>
       </div>
     </div>
