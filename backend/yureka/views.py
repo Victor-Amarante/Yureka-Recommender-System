@@ -2,7 +2,7 @@ from rest_framework import viewsets, status
 from rest_framework.response import Response
 from rest_framework.decorators import action, api_view, permission_classes
 from datetime import datetime
-from .models import User, Topic, UserTopic, UserRoutine, Video, Blacklist, VideoTopic, CuratedVideo, UserLikes, VideoComment
+from .models import User, Topic, UserTopic, UserRoutine, Video, Blacklist, VideoTopic, CuratedVideo, UserLikes, VideoComment, SocialAuth, AuthProviders
 from .serializers import (UserSerializer, TopicSerializer, UserTopicSerializer, VideoSerializer, UserRoutineSerializer, BlacklistSerializer, CuratedVideoSerializer, VideoCommentSerializer)
 from rest_framework.permissions import IsAuthenticated
 from django.utils import timezone
@@ -10,6 +10,12 @@ from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.exceptions import APIException
+from django.shortcuts import redirect
+from django.conf import settings
+from google.oauth2 import id_token
+from google.auth.transport import requests
+import jwt
+from datetime import datetime, timedelta
 
 
 def create_response(data=None, message=None, status_code=status.HTTP_200_OK):
@@ -416,7 +422,6 @@ class ChannelViewSet(viewsets.ViewSet):
         )
     }
 )
-    
 @api_view(['GET'])
 def status_check(request):
     try:
@@ -592,3 +597,125 @@ def update_interests(request):
 @api_view(['GET'])
 def health_check(request):
     return Response({"status": "healthy"}, status=status.HTTP_200_OK)
+
+# @api_view(['GET'])
+# def google_login(request):
+#     """
+#     Inicia o fluxo de login com Google redirecionando para a página de consentimento
+#     """
+#     try:
+#         google_oauth_url = "https://accounts.google.com/o/oauth2/v2/auth"
+        
+#         params = {
+#             'client_id': settings.GOOGLE_CLIENT_ID,
+#             'redirect_uri': settings.OAUTH2_REDIRECT_URI,
+#             'response_type': 'code',
+#             'scope': 'email profile',
+#             'access_type': 'offline',
+#             'prompt': 'consent',
+#             'state': request.GET.get('redirect_uri', settings.FRONTEND_URL)  # Store frontend redirect URL in state
+#         }
+        
+#         auth_url = f"{google_oauth_url}?{'&'.join(f'{k}={v}' for k, v in params.items())}"
+#         return redirect(auth_url)
+#     except Exception as e:
+#         return create_response(
+#             message="Erro ao iniciar autenticação com Google",
+#             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
+#         )
+
+# @api_view(['GET'])
+# def google_callback(request):
+#     """
+#     Callback do Google OAuth2 que processa o código de autorização
+#     """
+#     try:
+#         code = request.GET.get('code')
+#         frontend_redirect = request.GET.get('state', settings.FRONTEND_URL)
+        
+#         if not code:
+#             return create_response(
+#                 message="Código de autorização não fornecido",
+#                 status_code=status.HTTP_400_BAD_REQUEST
+#             )
+
+#         # Trocar o código por tokens
+#         token_url = 'https://oauth2.googleapis.com/token'
+#         data = {
+#             'code': code,
+#             'client_id': settings.GOOGLE_CLIENT_ID,
+#             'client_secret': settings.GOOGLE_CLIENT_SECRET,
+#             'redirect_uri': settings.OAUTH2_REDIRECT_URI,
+#             'grant_type': 'authorization_code'
+#         }
+        
+#         response = requests.post(token_url, data=data)
+#         if not response.ok:
+#             return create_response(
+#                 message=f"Erro ao trocar o código por tokens: {response.text}",
+#                 status_code=status.HTTP_400_BAD_REQUEST
+#             )
+        
+#         tokens = response.json()
+        
+#         try:
+#             id_info = id_token.verify_oauth2_token(
+#                 tokens['id_token'],
+#                 requests.Request(),
+#                 settings.GOOGLE_CLIENT_ID
+#             )
+#         except Exception as e:
+#             return create_response(
+#                 message=f"Erro ao verificar token do Google: {str(e)}",
+#                 status_code=status.HTTP_400_BAD_REQUEST
+#             )
+        
+#         # Criar ou atualizar usuário
+#         try:
+#             user, created = User.objects.get_or_create(
+#                 email=id_info['email'],
+#                 defaults={
+#                     'name': id_info['name'],
+#                     'avatar_url': id_info.get('picture')
+#                 }
+#             )
+            
+#             if not created:
+#                 user.name = id_info['name']
+#                 user.avatar_url = id_info.get('picture')
+#                 user.save()
+            
+#             # Criar ou atualizar autenticação social
+#             SocialAuth.objects.get_or_create(
+#                 user=user,
+#                 provider=AuthProviders.GOOGLE
+#             )
+#         except Exception as e:
+#             return create_response(
+#                 message=f"Erro ao criar/atualizar usuário: {str(e)}",
+#                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
+#             )
+        
+#         # Gerar JWT
+#         try:
+#             jwt_payload = {
+#                 'user_id': str(user.id),
+#                 'email': user.email,
+#                 'exp': datetime.utcnow() + settings.JWT_EXPIRATION_DELTA
+#             }
+            
+#             token = jwt.encode(jwt_payload, settings.JWT_SECRET_KEY, algorithm=settings.JWT_ALGORITHM)
+            
+#             # Redirecionar para o frontend com o token
+#             return redirect(f"{frontend_redirect}?token={token}")
+#         except Exception as e:
+#             return create_response(
+#                 message=f"Erro ao gerar token JWT: {str(e)}",
+#                 status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
+#             )
+            
+#     except Exception as e:
+#         return create_response(
+#             message=f"Erro no processo de autenticação: {str(e)}",
+#             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR
+#         )

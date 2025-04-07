@@ -4,7 +4,9 @@ from .views import (
     UserViewSet, TopicViewSet, UserTopicViewSet, VideoViewSet, UserRoutineViewSet, BlacklistViewSet, status_check,
     InterestViewSet,
     RoutineViewSet,
-    VideoRecommendationViewSet
+    VideoRecommendationViewSet,
+    VideoInteractionViewSet,
+    ChannelViewSet
 )
 
 # Criando um roteador para as rotas da API
@@ -18,6 +20,8 @@ router.register(r'blacklist', BlacklistViewSet)
 router.register(r'interests', InterestViewSet, basename='interests')
 router.register(r'routines', RoutineViewSet, basename='routines')
 router.register(r'recommendations', VideoRecommendationViewSet, basename='recommendations')
+router.register(r'video-interactions', VideoInteractionViewSet, basename='video-interactions')
+router.register(r'channels', ChannelViewSet, basename='channels')
 
 urlpatterns = [
     path('', include(router.urls)),

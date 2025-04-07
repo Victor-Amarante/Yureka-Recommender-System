@@ -25,7 +25,7 @@ class UserTopicSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = UserTopic
-        fields = ['user', 'topic', 'created_at']
+        fields = ['id', 'user', 'topic', 'created_at']
 
 class ChannelSerializer(serializers.ModelSerializer):
     class Meta:

@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+from datetime import datetime, timedelta
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,6 +17,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+# CORS settings
+CORS_ALLOW_ALL_ORIGINS = True  # Only for development!
+CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+]
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^http://localhost:\d+$",
+    r"^http://127.0.0.1:\d+$",
+]
 
 # Application definition
 
@@ -26,20 +38,27 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    # apps
     'yureka',
     # packages
     'rest_framework',
-    'django.contrib.sites',
+    # auth
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
+    # providers
     'allauth.socialaccount.providers.google',
+    # swagger
     'drf_yasg',
+    # cors
+    'corsheaders',
 ]
 
-MIDDLEWARE = [
+MIDDLEWARE = [  # Deve vir antes do CommonMiddleware
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -48,25 +67,18 @@ MIDDLEWARE = [
     'allauth.account.middleware.AccountMiddleware',
 ]
 
-AUTHENTICATION_BACKENDS = (
+AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend',
-)
+]
 
 SITE_ID = 1
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
         'APP': {
-            'client_id': os.getenv('GOOGLE_CLIENT_ID'),
-            'secret': os.getenv('GOOGLE_SECRET_ID'),
+            'client_id': '186442402101-ss9e5utmi9k6bp34bu3rqjm3qj4j1ueh.apps.googleusercontent.com',
+            'secret': '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',
             'key': ''
-        },
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
         }
     }
 }

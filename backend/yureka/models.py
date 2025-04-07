@@ -13,7 +13,6 @@ class WeekDays(models.TextChoices):
 
 class AuthProviders(models.TextChoices):
     GOOGLE = 'google'
-    APPLE = 'apple'
 
 class User(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -21,12 +20,18 @@ class User(models.Model):
     email = models.TextField(unique=True)
     avatar_url = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.name
 
 class Topic(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.TextField(unique=True)
     description = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return self.name
 
 class UserTopic(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
