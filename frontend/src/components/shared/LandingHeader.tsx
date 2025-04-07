@@ -64,7 +64,7 @@ export default function LandingHeader() {
 
           {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link to="/login">
+            <Link to="/app/home">
               <Button
                 variant="ghost"
                 className="text-gray-300 hover:text-white hover:bg-white/10 rounded-lg"
