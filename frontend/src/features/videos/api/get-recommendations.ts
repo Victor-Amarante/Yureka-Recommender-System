@@ -19,7 +19,7 @@ export const getRecommendations = async (): Promise<Video[]> => {
         id: 'ch1',
         name: 'Código Fonte TV',
         image_url:
-          'https://yt3.googleusercontent.com/ytc/APkrFKao6W6UAkrPU9J4SFP_HgYHuBqj8-rHkhQvJkRhCg=s176-c-k-c0x00ffffff-no-rj',
+          'https://yt3.googleusercontent.com/MbehocmcGccQd_uRFgSSsfydV2w8GuUPfe4k4fOk4Y0T39_qB7vCK_tfx26EOSg2cnanc3_9n8k',
       },
       duration: 1420, // 23:40 em segundos
       views: 450000,
@@ -31,15 +31,16 @@ export const getRecommendations = async (): Promise<Video[]> => {
     },
     {
       id: 'Ke90Tje7VS0',
-      title: 'Aprenda React em 2 horas - Curso completo',
+      title: 'Sobre o MEDO de mudar de opinião | Pensando Alto #24',
       description:
         'Aprenda os fundamentos do React e como construir sua primeira aplicação web moderna.',
-      thumbnail: 'https://i.ytimg.com/vi/Ke90Tje7VS0/maxresdefault.jpg',
+      thumbnail:
+        'https://i.ytimg.com/vi/q28GpC1RjtM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLDIIrXdCb9H3YhpFwtvBLTRUByA7w',
       channel: {
         id: 'ch2',
-        name: 'Filipe Deschamps',
+        name: 'Arthur Miller',
         image_url:
-          'https://yt3.googleusercontent.com/ytc/APkrFKbAfCpu9XgKNFT0ot4BWyreSEWEJN-i01Ip_ZMLBw=s176-c-k-c0x00ffffff-no-rj',
+          'https://yt3.googleusercontent.com/MbehocmcGccQd_uRFgSSsfydV2w8GuUPfe4k4fOk4Y0T39_qB7vCK_tfx26EOSg2cnanc3_9n8k',
       },
       duration: 7200, // 2 horas em segundos
       views: 780000,
@@ -59,7 +60,7 @@ export const getRecommendations = async (): Promise<Video[]> => {
         id: 'ch3',
         name: 'Rocketseat',
         image_url:
-          'https://yt3.googleusercontent.com/ytc/APkrFKaTzhorsPUaxIu3GjtQBrqwWLcESxRRYkH5A0RA=s176-c-k-c0x00ffffff-no-rj',
+          'https://yt3.googleusercontent.com/MbehocmcGccQd_uRFgSSsfydV2w8GuUPfe4k4fOk4Y0T39_qB7vCK_tfx26EOSg2cnanc3_9n8k',
       },
       duration: 5400, // 1:30 horas em segundos
       views: 320000,
@@ -79,7 +80,7 @@ export const getRecommendations = async (): Promise<Video[]> => {
         id: 'ch4',
         name: 'Lucas Nhimi',
         image_url:
-          'https://yt3.googleusercontent.com/ytc/APkrFKZJjCMPDuDe1aaIAMvY6rjXMzIgVRRwhoYQASYI=s176-c-k-c0x00ffffff-no-rj',
+          'https://yt3.googleusercontent.com/MbehocmcGccQd_uRFgSSsfydV2w8GuUPfe4k4fOk4Y0T39_qB7vCK_tfx26EOSg2cnanc3_9n8k',
       },
       duration: 8100, // 2:15 horas em segundos
       views: 185000,
@@ -101,7 +102,7 @@ export const getRecommendations = async (): Promise<Video[]> => {
         id: 'ch1',
         name: 'Código Fonte TV',
         image_url:
-          'https://yt3.googleusercontent.com/ytc/APkrFKao6W6UAkrPU9J4SFP_HgYHuBqj8-rHkhQvJkRhCg=s176-c-k-c0x00ffffff-no-rj',
+          'https://yt3.googleusercontent.com/MbehocmcGccQd_uRFgSSsfydV2w8GuUPfe4k4fOk4Y0T39_qB7vCK_tfx26EOSg2cnanc3_9n8k',
       },
       duration: 1420, // 23:40 em segundos
       comments_count: 20,
@@ -119,7 +120,7 @@ export const getRecommendations = async (): Promise<Video[]> => {
         id: 'ch2',
         name: 'Filipe Deschamps',
         image_url:
-          'https://yt3.googleusercontent.com/ytc/APkrFKbAfCpu9XgKNFT0ot4BWyreSEWEJN-i01Ip_ZMLBw=s176-c-k-c0x00ffffff-no-rj',
+          'https://yt3.googleusercontent.com/MbehocmcGccQd_uRFgSSsfydV2w8GuUPfe4k4fOk4Y0T39_qB7vCK_tfx26EOSg2cnanc3_9n8k',
       },
       duration: 7200, // 2 horas em segundos
       comments_count: 20,

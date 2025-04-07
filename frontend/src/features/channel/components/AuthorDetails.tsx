@@ -14,7 +14,7 @@ export function AuthorDetails({
 }: AuthorDetailsProps) {
   return (
     <div className="flex flex-col min-w-0 text-white items-start gap-1">
-      <h3 className="font-righteous text-lg truncate w-full">{channel_name}</h3>
+      <h3 className="font-outfit text-lg truncate w-full">{channel_name}</h3>
       <div className="flex gap-3">
         <div className="flex gap-2 items-center">
           <Youtube className="text-red-600 shrink-0" size={18} />

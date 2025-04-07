@@ -1,5 +1,5 @@
 import logo from '@/assets/logo.svg';
-import LoginModal from '@/features/auth/components/LoginModal';
+import LoginModal from '@/features/channel/auth/components/LoginModal';
 import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';

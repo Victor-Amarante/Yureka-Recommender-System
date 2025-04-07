@@ -15,7 +15,7 @@ import { LatestVideo } from './LatestVideo';
 import { useIsFollowing } from '../hooks/useIsFollowing';
 import { getSocialIcon } from '../utils/getSocialIcon';
 import { Calendar, Eye } from 'lucide-react';
-import { useChannelDetails } from '../api/get-channel-details';
+import { useChannelDetails } from '../../api/get-channel-details';
 
 const mockChannel = {
   id: '12321',
@@ -55,6 +55,18 @@ const mockChannel = {
       type: 'twitch',
       url: 'asddasdasas',
     },
+    {
+      type: 'twitter',
+      url: 'asddasdasas',
+    },
+    {
+      type: 'instagram',
+      url: 'asddasdasas',
+    },
+    {
+      type: 'youtube',
+      url: 'asddasdasas',
+    },
   ],
 };
 
@@ -88,16 +100,16 @@ export function ChannelPreviewCard({ ...props }: Channel) {
           <AuthorImage
             channel_id={id}
             channel_name={name}
-            src={image_url ?? ''}
+            src={image_url}
             size={30}
             className="rounded-md"
           />
 
           <div className="w-full flex items-end justify-between">
             <AuthorDetails
-            // subscribers={subscribers}
-            // followers={followers}
-            // total_views={total_views}
+              channel_name={name}
+              followers={2120}
+              subscribers={60000}
             />
 
             <FollowButton isFollowing={isFollowing} />

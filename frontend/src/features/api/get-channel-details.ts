@@ -1,6 +1,6 @@
 import { apiRequest } from '@/lib/api-request';
 import { useQuery } from '@tanstack/react-query';
-import { Channel, ChannelSchema } from '../types/Channel';
+import { Channel, ChannelSchema } from '../channel/types/Channel';
 
 export const getChannelDetails = async (
   channelId: string,

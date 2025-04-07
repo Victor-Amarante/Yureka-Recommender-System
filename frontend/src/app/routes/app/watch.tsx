@@ -147,7 +147,49 @@ export default function WatchPage() {
 
               <div className="space-y-2">
                 <p className="text-gray-300 whitespace-pre-line break-words">
-                  {currentVideo.description}
+                  {`
+                Pra virar membro do canal é só usar esse link aqui:
+                / @oarthurmiller
+
+                Virando membro você tem acesso a:
+                • Podcast exclusivo ao vivo e acesso a todos episódios que já rolaram;
+                alguns dos convidados que já passaram por lá: Load Comics, Felipe Barbieri, Tiago (Tira do Papel), Matheus de Souza (Passageiro), Jonny Viccari... e MUITO MAIS.
+                • Lives toda sexta trocando referências, conversando com os membros e assistindo coisas legais;
+                • Vídeos extras (vlogs, reacts, aulas e o que mais me der na telha)
+
+                _______________________________________________
+
+                Me segue no Instagram :)
+                / arthurrmiller
+
+                _______________________________________________
+
+                Em um futuro breve vão rolar encontros/aulões/imersões sobre criatividade: storytelling, roteiro, edição...
+                Se tu tiver interesse, preenche esse forms aqui:
+                https://docs.google.com/forms/d/1Q-SG...
+
+                *Isso não é uma lista de espera — mas as turmas dos encontros vão ser pequenas, 10-15 pessoas no MÁXIMO.
+                Então quem preencher o formulário, além da prioridade na fila, vai ganhar um descontão como agradecimento por ter respondido as perguntas!
+
+                _______________________________________________
+
+                Se tu gosta do Pensando Alto, se inscreve também na minha newsletter!
+                Textos novos toda semana :)
+                https://oarthurmiller.substack.com/
+
+                _______________________________________________
+
+                Canal da Nati:
+                (ela faz vlog da nossa vida aqui em Amsterdam)
+                eu também apareço por lá de vez em quando!
+                / @natipompeu
+
+                _______________________________________________
+
+                Quer usar as mesmas músicas que eu uso nos meus vídeos?
+                Use o Epidemic Sounds — nesse link você consegue 30 DIAS DE MÚSICA GRÁTIS:
+                https://share.epidemicsound.com/39hw3n
+                `}
                 </p>
 
                 <div className="flex flex-wrap gap-2 mt-3">
