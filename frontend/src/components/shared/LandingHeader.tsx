@@ -1,8 +1,10 @@
 import logo from '@/assets/logo.svg';
 import { Button } from '@/components/ui/button';
+import LoginModal from '@/features/auth/components/LoginModal';
 import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
+import SignupFormDemo from '../signup-form-demo';
 
 export default function LandingHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -64,19 +66,7 @@ export default function LandingHeader() {
 
           {/* Desktop CTA Buttons */}
           <div className="hidden md:flex items-center space-x-4">
-            <Link to="/app/home">
-              <Button
-                variant="ghost"
-                className="text-gray-300 hover:text-white hover:bg-white/10 rounded-lg"
-              >
-                Entrar
-              </Button>
-            </Link>
-            <Link to="/register">
-              <Button className="bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg">
-                Registrar
-              </Button>
-            </Link>
+            <LoginModal />
           </div>
 
           {/* Mobile Menu Button */}

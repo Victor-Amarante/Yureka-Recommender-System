@@ -20,15 +20,25 @@ import {
   Settings,
   Users,
 } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import HistoryDrawer from './HistoryDrawer';
+import { useCurrentRoutine } from '@/features/routine/api/get-current-routine';
+import { getTimeUntil } from '@/features/routine/utils/getTimeUntil';
+import { cn } from '@/lib/utils';
 
 export default function AppNavbar() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+  const { data, isLoading, isError } = useCurrentRoutine();
 
-  const [timeRemaining, setTimeRemaining] = useState('1h 23min');
+  const [timeRemaining, setTimeRemaining] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (data) {
+      setTimeRemaining(getTimeUntil(data.end_time));
+    }
+  }, [data]);
 
   return (
     <>
@@ -61,12 +71,22 @@ export default function AppNavbar() {
             <div className="flex items-center space-x-4">
               <div className="hidden sm:flex items-center bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
                 <div className="w-2 h-2 rounded-full bg-green-400 mr-2 animate-pulse"></div>
-                <span
-                  className="text-sm text-gray-200 font-medium"
-                  style={{ fontFamily: 'var(--font-outfit)' }}
-                >
-                  Tempo livre: {timeRemaining}
-                </span>
+                <div className="flex gap-2 text-sm text-gray-200 font-medium">
+                  <span
+                    className="text-sm text-gray-200 font-medium"
+                    style={{ fontFamily: 'var(--font-outfit)' }}
+                  >
+                    Tempo livre:
+                  </span>
+                  <div
+                    className={cn({
+                      'rounded-full animate-pulse bg-gray-700 text-transparent':
+                        !timeRemaining,
+                    })}
+                  >
+                    {timeRemaining ?? '01h 23min'}
+                  </div>
+                </div>
               </div>
 
               <Button
@@ -74,6 +94,7 @@ export default function AppNavbar() {
                 size="icon"
                 className="text-gray-300 hover:text-white hover:bg-white/5 rounded-full"
                 onClick={() => setIsHistoryOpen(true)}
+                disabled
               >
                 <History className="h-5 w-5" />
                 <span className="sr-only">History</span>
@@ -117,19 +138,31 @@ export default function AppNavbar() {
                     </div>
                   </DropdownMenuLabel>
                   <DropdownMenuSeparator className="bg-white/5" />
-                  <DropdownMenuItem className="rounded-lg focus:bg-white/10 focus:text-white px-3 py-2 cursor-pointer">
+                  <DropdownMenuItem
+                    disabled
+                    className="rounded-lg focus:bg-white/10 focus:text-white px-3 py-2 cursor-pointer"
+                  >
                     <Heart className="mr-2 h-4 w-4 text-white" />
                     <span>Likes</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="rounded-lg focus:bg-white/10 focus:text-white px-3 py-2 cursor-pointer">
+                  <DropdownMenuItem
+                    disabled
+                    className="rounded-lg focus:bg-white/10 focus:text-white px-3 py-2 cursor-pointer"
+                  >
                     <ListMusic className="mr-2 h-4 w-4 text-white" />
                     <span>Playlists</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="rounded-lg focus:bg-white/10 focus:text-white px-3 py-2 cursor-pointer">
+                  <DropdownMenuItem
+                    disabled
+                    className="rounded-lg focus:bg-white/10 focus:text-white px-3 py-2 cursor-pointer"
+                  >
                     <Users className="mr-2 h-4 w-4 text-white" />
                     <span>Following</span>
                   </DropdownMenuItem>
-                  <DropdownMenuItem className="rounded-lg focus:bg-white/10 focus:text-white px-3 py-2 cursor-pointer">
+                  <DropdownMenuItem
+                    disabled
+                    className="rounded-lg focus:bg-white/10 focus:text-white px-3 py-2 cursor-pointer"
+                  >
                     <Moon className="mr-2 h-4 w-4 text-white" />
                     <span>Appearance</span>
                   </DropdownMenuItem>

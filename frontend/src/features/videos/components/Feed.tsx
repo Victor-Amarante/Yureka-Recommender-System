@@ -1,29 +1,28 @@
-import { faker } from '@faker-js/faker';
-import { Video } from '../types/Video';
-import { VideoPreview } from './VideoPreview';
+import { mockVideo } from '../types/Video';
+import { VideoPreview } from './VideoPreview/VideoPreview';
+import { useRecommendations } from '../api/get-recommendations';
+import { VideoPreviewSkeletons } from './VideoPreview/VideoPreviewSkeletons';
+import { AsyncStateHandler } from '@/components/shared/AsyncStateHandler';
 
-export const mockVideo: Video = {
-  id: faker.string.uuid(),
-  title: faker.lorem.sentence(),
-  description: faker.lorem.paragraph(),
-  duration: faker.number.int({ min: 100, max: 1000 }),
-  thumbnail: faker.image.url({
-    height: 400,
-    width: 711,
-  }),
-  channel_id: faker.string.uuid(),
-  channel_image: faker.image.avatar(),
-  channel_name: faker.internet.username(),
-  views: faker.number.int({ min: 0, max: 10000 }),
-  likes_count: faker.number.int({ min: 0, max: 10000 }),
-  comments_count: faker.number.int({ min: 0, max: 10000 }),
-  publication_date: faker.date.recent(),
-  created_at: faker.date.recent(),
-};
+function ErrorMessage({ message }: { message: string }) {
+  return (
+    <div className="flex flex-col items-center justify-center text-center p-8 w-full">
+      <div className="text-red-500 text-xl mb-4">{message}</div>
+      <button
+        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        onClick={() => window.location.reload()}
+      >
+        Tentar novamente
+      </button>
+    </div>
+  );
+}
 
 export function Feed() {
+  const { data, isLoading, isError, refetch } = useRecommendations();
+
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 my-20 size-full">
       <div className="font-outfit text-white flex flex-col gap-2">
         <h2 className="text-5xl font-bold">Viagem e Cultura</h2>
         <span className="text-neutral-300">
@@ -31,11 +30,21 @@ export function Feed() {
         </span>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {...Array(6)
-          .fill(0)
-          .map((_, i) => <VideoPreview {...mockVideo} key={i} />)}
-      </div>
+      <AsyncStateHandler
+        isLoading={isLoading}
+        isError={isError}
+        data={data}
+        skeleton={<VideoPreviewSkeletons />}
+        errorMessage="Não foi possível carregar os vídeos solicitados. "
+        handleRetry={refetch}
+        render={(videos) => (
+          <div className="size-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {videos.map((video) => (
+              <VideoPreview key={video.id} {...mockVideo()} />
+            ))}
+          </div>
+        )}
+      />
     </div>
   );
 }
