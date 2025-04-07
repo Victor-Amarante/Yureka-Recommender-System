@@ -10,6 +10,7 @@ import {
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { IconBrandGoogle } from '@tabler/icons-react';
+import { Link } from 'react-router';
 
 export function LoginForm({
   className,
@@ -35,7 +36,6 @@ export function LoginForm({
                   id="email"
                   type="email"
                   placeholder="m@example.com"
-                  required
                   className="bg-zinc-800 border-zinc-700 text-white placeholder:text-zinc-500"
                 />
               </div>
@@ -54,7 +54,6 @@ export function LoginForm({
                 <Input
                   id="password"
                   type="password"
-                  required
                   className="bg-zinc-800 border-zinc-700 text-white"
                 />
               </div>
@@ -64,15 +63,17 @@ export function LoginForm({
               >
                 Login
               </Button>
-              <button
-                className="group/btn shadow-input relative flex justify-center h-10 w-full items-center space-x-2 rounded-md px-4 font-medium bg-zinc-800 shadow-[0px_0px_1px_1px_#333333]"
-                type="submit"
-              >
-                <IconBrandGoogle className="h-4 w-4 text-neutral-300" />
-                <span className="text-sm text-center text-neutral-300">
-                  Google
-                </span>
-              </button>
+              <Link to={'/app/home'}>
+                <button
+                  className="group/btn shadow-input relative flex justify-center h-10 w-full items-center space-x-2 rounded-md px-4 font-medium bg-zinc-800 shadow-[0px_0px_1px_1px_#333333]"
+                  type="submit"
+                >
+                  <IconBrandGoogle className="h-4 w-4 text-neutral-300" />
+                  <span className="text-sm text-center text-neutral-300">
+                    Google
+                  </span>
+                </button>
+              </Link>
             </div>
             <div className="mt-4 text-center text-sm text-zinc-400">
               Don&apos;t have an account?{' '}
@@ -80,7 +81,7 @@ export function LoginForm({
                 href="#"
                 className="underline underline-offset-4 text-zinc-300"
               >
-                Sign up
+                Registar-se
               </a>
             </div>
           </form>

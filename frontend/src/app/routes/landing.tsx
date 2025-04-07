@@ -8,16 +8,16 @@ import { paths } from '@/config/paths';
 import { useUser } from '@/lib/auth';
 
 const LandingRoute = () => {
-  const navigate = useNavigate();
-  const user = useUser();
+  // const navigate = useNavigate();
+  // const user = useUser();
 
-  const handleStart = () => {
-    if (user.data) {
-      navigate(paths.app.home.getHref());
-    } else {
-      navigate(paths.auth.login.getHref());
-    }
-  };
+  // const handleStart = () => {
+  //   if (user.data) {
+  //     navigate(paths.app.home.getHref());
+  //   } else {
+  //     navigate(paths.auth.login.getHref());
+  //   }
+  // };
 
   return (
     <div className="w-screen h-screen">

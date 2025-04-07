@@ -15,21 +15,64 @@ import { LatestVideo } from './LatestVideo';
 import { useIsFollowing } from '../hooks/useIsFollowing';
 import { getSocialIcon } from '../utils/getSocialIcon';
 import { Calendar, Eye } from 'lucide-react';
+import { useChannelDetails } from '../api/get-channel-details';
 
-export function ChannelPreviewCard({
-  id,
-  name,
-  subscribers,
-  followers,
-  about,
-  created_at,
-  image_url,
-  total_views,
-  latest_videos,
-  social_links,
-  categories,
-}: Channel) {
-  const isFollowing = useIsFollowing(id);
+const mockChannel = {
+  id: '12321',
+  name: 'Arthur Miller',
+  subscribers: 12400,
+  about: 'vlog-ensaios e blablabla \n vídeos segunda, quarta e sexta',
+  image_url:
+    'https://yt3.googleusercontent.com/MbehocmcGccQd_uRFgSSsfydV2w8GuUPfe4k4fOk4Y0T39_qB7vCK_tfx26EOSg2cnanc3_9n8k',
+  created_at: new Date('2023-01-01'),
+  total_views: 123123,
+  categories: ['Podcast', 'Conversa', 'Filosofia'],
+  latest_videos: [
+    {
+      id: 'FYq86L1XqEM',
+      thumbnail:
+        'https://i.ytimg.com/vi/FYq86L1XqEM/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAiQUlxqND_VE88K2g9w4WhjSI6Jg',
+      title: 'Como vencer um profissional no xadrez em 24h (ou quase isso)',
+      views: 1300,
+    },
+    {
+      id: 'XJ5ObcTsTf4',
+      thumbnail:
+        'https://i9.ytimg.com/vi/XJ5ObcTsTf4/hqdefault_custom_3.jpg?sqp=CND50L8G-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD3FrnHiJar5CbotqD9pGIJamD5ZA',
+      title: 'o que acontece se voce parar??? | Pensando Alto #23',
+      views: 12000,
+    },
+    {
+      id: 'UeE0o51RvIs',
+      thumbnail:
+        'https://i.ytimg.com/vi/UeE0o51RvIs/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLClJXuiy8N1kxWdCUQYosG9kvqc4g',
+      title: 'Pegamos o PRIMEIRO TREM pra uma cidade desconhecida',
+      views: 11000,
+    },
+  ],
+  social_links: [
+    {
+      type: 'twitch',
+      url: 'asddasdasas',
+    },
+  ],
+};
+
+export function ChannelPreviewCard({ ...props }: Channel) {
+  const isFollowing = useIsFollowing('1');
+
+  const {
+    id,
+    name,
+    image_url,
+    categories,
+    about,
+    social_links,
+    latest_videos,
+    total_views,
+    created_at,
+    subscribers,
+  } = mockChannel;
 
   return (
     <div

@@ -4,20 +4,6 @@ import { useRecommendations } from '../api/get-recommendations';
 import { VideoPreviewSkeletons } from './VideoPreview/VideoPreviewSkeletons';
 import { AsyncStateHandler } from '@/components/shared/AsyncStateHandler';
 
-function ErrorMessage({ message }: { message: string }) {
-  return (
-    <div className="flex flex-col items-center justify-center text-center p-8 w-full">
-      <div className="text-red-500 text-xl mb-4">{message}</div>
-      <button
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        onClick={() => window.location.reload()}
-      >
-        Tentar novamente
-      </button>
-    </div>
-  );
-}
-
 export function Feed() {
   const { data, isLoading, isError, refetch } = useRecommendations();
 
@@ -40,7 +26,7 @@ export function Feed() {
         render={(videos) => (
           <div className="size-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {videos.map((video) => (
-              <VideoPreview key={video.id} {...mockVideo()} />
+              <VideoPreview key={video.id} {...video} />
             ))}
           </div>
         )}

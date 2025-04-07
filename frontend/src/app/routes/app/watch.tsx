@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ChannelPreviewCard } from '@/features/channel/components/ChannelPreviewCard';
 import AuthorImage from '@/features/videos/components/AuthorImage';
 import { VideoPlayer } from '@/features/videos/components/VideoPlayer/VideoPlayer';
+import { cn } from '@/lib/utils';
 import { fakerPT_BR } from '@faker-js/faker';
 import {
   Flag,
@@ -16,6 +17,8 @@ import { useState } from 'react';
 import { useParams } from 'react-router';
 
 export default function WatchPage() {
+  const [isLiked, setIsLiked] = useState(false);
+  const [isDisliked, setIsDisliked] = useState(false);
   const params = useParams();
   const videoId = params.id as string;
 
@@ -36,53 +39,6 @@ export default function WatchPage() {
     isSubscribed: false,
     subscriberCount: '245K',
   });
-
-  const [comments, setComments] = useState([
-    {
-      id: 1,
-      user: 'Ana Silva',
-      avatar: '/placeholder.svg?height=32&width=32',
-      content:
-        'Excelente vídeo! Estou usando algumas dessas tecnologias de IA na minha sala de aula e os resultados têm sido impressionantes.',
-      time: '1 dia atrás',
-      likes: 42,
-      replies: 3,
-    },
-    {
-      id: 2,
-      user: 'Carlos Mendes',
-      avatar: '/placeholder.svg?height=32&width=32',
-      content:
-        'Gostaria de saber mais sobre as preocupações éticas. Como podemos garantir que a IA não aumente a desigualdade educacional?',
-      time: '23 horas atrás',
-      likes: 28,
-      replies: 5,
-    },
-    {
-      id: 3,
-      user: 'Mariana Costa',
-      avatar: '/placeholder.svg?height=32&width=32',
-      content:
-        'Implementamos um sistema de tutoria por IA na nossa escola no ano passado. Houve uma curva de aprendizado, mas agora os professores adoram como isso libera tempo para interações mais significativas com os alunos.',
-      time: '12 horas atrás',
-      likes: 17,
-      replies: 1,
-    },
-  ]);
-
-  const toggleSubscription = () => {
-    setCurrentVideo((prev) => ({
-      ...prev,
-      isSubscribed: !prev.isSubscribed,
-      subscriberCount: prev.isSubscribed
-        ? (Number.parseInt(prev.subscriberCount.replace('K', '000')) - 1000) /
-            1000 +
-          'K'
-        : (Number.parseInt(prev.subscriberCount.replace('K', '000')) + 1000) /
-            1000 +
-          'K',
-    }));
-  };
 
   return (
     <div className="w-full relative min-h-screen">
@@ -133,46 +89,51 @@ export default function WatchPage() {
           />
 
           <div className="space-y-4 lg:col-span-3">
-            <h1
-              className="text-2xl font-bold text-white"
-              style={{ fontFamily: 'var(--font-space-grotesk)' }}
-            >
-              {currentVideo.title}
-            </h1>
+            <div className="w-full flex justify-between">
+              <h1
+                className="text-2xl font-bold text-white"
+                style={{ fontFamily: 'var(--font-space-grotesk)' }}
+              >
+                Como identificar gente chata
+              </h1>
+
+              <Button
+                variant="ghost"
+                className="text-white hover:bg-gray-800 rounded-full"
+              >
+                <Flag className="h-5 w-5" />
+              </Button>
+            </div>
 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div className="flex items-center space-x-2">
                 <div className="flex items-center bg-gray-800 rounded-full">
-                  <Button
-                    variant="ghost"
-                    className="rounded-none px-3 py-2 text-white hover:bg-gray-700 flex items-center"
+                  <button
+                    className="transition-colors hover:text-gray-600 rounded-none px-3 py-2 text-white"
+                    onClick={() => {
+                      setIsLiked(!isLiked);
+                      setIsDisliked(false);
+                    }}
                   >
-                    <ThumbsUp className="h-5 w-5 mr-1" />
-                    <span>{currentVideo.likes}</span>
-                  </Button>
+                    <ThumbsUp
+                      className={cn('h-5 w-5 mr-1', { 'fill-white': isLiked })}
+                    />
+                  </button>
                   <div className="h-5 w-px bg-gray-700"></div>
-                  <Button
-                    variant="ghost"
-                    className="rounded-none px-3 py-2 text-white hover:bg-gray-700"
+                  <button
+                    className="transition-colors hover:text-gray-600 rounded-none px-3 py-2 text-white"
+                    onClick={() => {
+                      setIsDisliked(!isDisliked);
+                      setIsLiked(false);
+                    }}
                   >
-                    <ThumbsDown className="h-5 w-5" />
-                  </Button>
+                    <ThumbsDown
+                      className={cn('h-5 w-5 mr-1', {
+                        'fill-white': isDisliked,
+                      })}
+                    />
+                  </button>
                 </div>
-
-                <Button
-                  variant="ghost"
-                  className="text-white hover:bg-gray-800 rounded-full"
-                >
-                  <Share2 className="h-5 w-5 mr-1" />
-                  <span className="hidden sm:inline">Compartilhar</span>
-                </Button>
-
-                <Button
-                  variant="ghost"
-                  className="text-white hover:bg-gray-800 rounded-full"
-                >
-                  <Flag className="h-5 w-5" />
-                </Button>
               </div>
             </div>
 

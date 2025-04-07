@@ -30,5 +30,9 @@ export const paths = {
       path: 'watch/:id',
       getHref: (id: string) => `/app/watch/${id}`,
     },
+    topics: {
+      path: 'topics',
+      getHref: () => `/app/topics`,
+    },
   },
 } as const;

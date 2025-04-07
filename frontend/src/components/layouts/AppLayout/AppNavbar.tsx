@@ -30,15 +30,15 @@ import { cn } from '@/lib/utils';
 export default function AppNavbar() {
   const [searchQuery, setSearchQuery] = useState('');
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
-  const { data, isLoading, isError } = useCurrentRoutine();
+  // const { data, isLoading, isError } = useCurrentRoutine();
 
-  const [timeRemaining, setTimeRemaining] = useState<string | null>(null);
+  // const [timeRemaining, setTimeRemaining] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (data) {
-      setTimeRemaining(getTimeUntil(data.end_time));
-    }
-  }, [data]);
+  // useEffect(() => {
+  //   if (data) {
+  //     setTimeRemaining(getTimeUntil(data.end_time));
+  //   }
+  // }, [data]);
 
   return (
     <>
@@ -76,16 +76,8 @@ export default function AppNavbar() {
                     className="text-sm text-gray-200 font-medium"
                     style={{ fontFamily: 'var(--font-outfit)' }}
                   >
-                    Tempo livre:
+                    Tempo livre: 1h 23m
                   </span>
-                  <div
-                    className={cn({
-                      'rounded-full animate-pulse bg-gray-700 text-transparent':
-                        !timeRemaining,
-                    })}
-                  >
-                    {timeRemaining ?? '01h 23min'}
-                  </div>
                 </div>
               </div>
 
@@ -100,7 +92,7 @@ export default function AppNavbar() {
                 <span className="sr-only">History</span>
               </Button>
 
-              <Link to="/settings">
+              <Link to="/topics">
                 <Button
                   variant="ghost"
                   size="icon"
@@ -130,10 +122,10 @@ export default function AppNavbar() {
                         className="text-sm font-medium leading-none text-white"
                         style={{ fontFamily: 'var(--font-outfit)' }}
                       >
-                        John Doe
+                        Eliseu C. de Brito
                       </p>
                       <p className="text-xs leading-none text-gray-400">
-                        john.doe@example.com
+                        ecb2@cin.ufpe.br
                       </p>
                     </div>
                   </DropdownMenuLabel>

@@ -19,7 +19,7 @@ export const VideosSchema = z.object({
 // Mock para o schema de vídeos
 export const mockVideo = () => {
   return {
-    id: faker.string.uuid(),
+    id: 'FYq86L1XqEM',
     title: faker.lorem.sentence(),
     description: faker.lorem.paragraph(),
     duration: faker.number.int({ min: 60, max: 3600 }), // Between 1 min and 1 hour in seconds
