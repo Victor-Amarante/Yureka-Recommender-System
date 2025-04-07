@@ -1,10 +1,8 @@
 import logo from '@/assets/logo.svg';
-import { Button } from '@/components/ui/button';
 import LoginModal from '@/features/auth/components/LoginModal';
 import { Menu, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
-import SignupFormDemo from '../signup-form-demo';
 
 export default function LandingHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

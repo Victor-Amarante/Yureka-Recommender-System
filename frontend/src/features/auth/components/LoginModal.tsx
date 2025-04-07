@@ -8,7 +8,6 @@ import {
   DialogTrigger,
 } from '@/components/ui/dialog';
 import { LoginButton } from './LoginButton';
-import SignupFormDemo from '@/components/signup-form-demo';
 import { LoginForm } from './LoginForm';
 
 export default function LoginModal() {
