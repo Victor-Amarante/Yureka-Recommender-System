@@ -1,3 +1,6 @@
+import { Button } from '@/components/ui/button';
+import { Avatar, AvatarImage, AvatarFallback } from '@radix-ui/react-avatar';
+
 export function NewComment() {
   return (
     <div className="space-y-4">
