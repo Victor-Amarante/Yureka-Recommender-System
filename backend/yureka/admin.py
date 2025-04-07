@@ -1,18 +1,50 @@
 from django.contrib import admin
-from yureka.domain.models import (
-  User, SocialAuth, Topic, UserTopic, Video, CuratedVideo, 
-  VideoTopic, UserRoutine, VideoMetric, Blacklist
+from .models import (
+    User, 
+    SocialAuth, 
+    Topic, 
+    UserTopic, 
+    Video, 
+    CuratedVideo,
+    VideoTopic, 
+    UserRoutine, 
+    VideoMetrics, 
+    Blacklist
 )
 
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'created_at')
+    search_fields = ('name', 'email')
 
-# Register your models here.
-admin.site.register(User)
+@admin.register(Topic)
+class TopicAdmin(admin.ModelAdmin):
+    list_display = ('name', 'created_at')
+    search_fields = ('name',)
+
+@admin.register(Video)
+class VideoAdmin(admin.ModelAdmin):
+    list_display = ('title', 'channel', 'views', 'created_at')
+    search_fields = ('title', 'channel__name')
+
+@admin.register(CuratedVideo)
+class CuratedVideoAdmin(admin.ModelAdmin):
+    list_display = ('video', 'approved_at')
+
+@admin.register(UserRoutine)
+class UserRoutineAdmin(admin.ModelAdmin):
+    list_display = ('user', 'topic', 'start_time', 'end_time')
+
+@admin.register(VideoMetrics)
+class VideoMetricsAdmin(admin.ModelAdmin):
+    list_display = ('user', 'video', 'watched_duration', 'watched_at')
+
+@admin.register(Blacklist)
+class BlacklistAdmin(admin.ModelAdmin):
+    list_display = ('channel_name', 'reason', 'added_at')
+    search_fields = ('channel_name',)
+
+# Registrando os modelos mais simples
 admin.site.register(SocialAuth)
-admin.site.register(Topic)
 admin.site.register(UserTopic)
-admin.site.register(Video)
-admin.site.register(CuratedVideo)
 admin.site.register(VideoTopic)
-admin.site.register(UserRoutine)
-admin.site.register(VideoMetric)
-admin.site.register(Blacklist)
