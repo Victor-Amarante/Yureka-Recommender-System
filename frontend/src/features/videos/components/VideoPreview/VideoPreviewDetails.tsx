@@ -26,7 +26,7 @@ export default function VideoPreviewDetails({
   views,
 }: VideoPreviewDetailsProps) {
   return (
-    <div className="w-full p-2 justify-start">
+    <div className="w-full p-2 flex flex-col justify-between">
       <div className="flex flex-row items-start justify-between">
         <Link to={paths.app.watch.getHref(video_id)}>
           <h3

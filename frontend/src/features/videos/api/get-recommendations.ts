@@ -100,9 +100,9 @@ export const getRecommendations = async (): Promise<Video[]> => {
         'Neste tutorial, aprenda a criar uma API RESTful usando Node.js e Express do zero.',
       channel: {
         id: 'ch1',
-        name: 'Código Fonte TV',
+        name: 'Arthur Miller',
         image_url:
-          'https://yt3.googleusercontent.com/MbehocmcGccQd_uRFgSSsfydV2w8GuUPfe4k4fOk4Y0T39_qB7vCK_tfx26EOSg2cnanc3_9n8k',
+          'https://yt3.googleusercontent.com/MbehocmcGccQd_uRFgSSsfydV2w8GuUPfe4k4fOk4Y0T39_qB7vCK_tfx26EOSg2cnanc3_9n8k=s160-c-k-c0x00ffffff-no-rj',
       },
       duration: 1420, // 23:40 em segundos
       comments_count: 20,
@@ -112,15 +112,14 @@ export const getRecommendations = async (): Promise<Video[]> => {
     },
     {
       id: 'XJ5ObcTsTf4',
-      thumbnail:
-        'https://i9.ytimg.com/vi/XJ5ObcTsTf4/hqdefault_custom_3.jpg?sqp=CND50L8G-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD3FrnHiJar5CbotqD9pGIJamD5ZA',
+      thumbnail: 'https://i.ytimg.com/vi_webp/XJ5ObcTsTf4/maxresdefault.webp',
       title: 'o que acontece se voce parar??? | Pensando Alto #23',
       views: 12000,
       channel: {
         id: 'ch2',
-        name: 'Filipe Deschamps',
+        name: 'Arthur Miller',
         image_url:
-          'https://yt3.googleusercontent.com/MbehocmcGccQd_uRFgSSsfydV2w8GuUPfe4k4fOk4Y0T39_qB7vCK_tfx26EOSg2cnanc3_9n8k',
+          'https://yt3.googleusercontent.com/MbehocmcGccQd_uRFgSSsfydV2w8GuUPfe4k4fOk4Y0T39_qB7vCK_tfx26EOSg2cnanc3_9n8k=s160-c-k-c0x00ffffff-no-rj',
       },
       duration: 7200, // 2 horas em segundos
       comments_count: 20,

@@ -17,7 +17,7 @@ export function VideoPreview({
   publication_date,
 }: Video) {
   return (
-    <div className="group shadow-input row-span-1 flex flex-col justify-between space-y-4 rounded-xl border border-neutral-200 p-4 transition duration-200 hover:shadow-xl border-white/[0.2] bg-black shadow-none">
+    <div className="group shadow-input row-span-1 flex flex-col justify-start space-y-4 rounded-xl border border-neutral-200 p-4 transition duration-200 hover:shadow-xl border-white/[0.2] bg-black shadow-none">
       <div className="relative aspect-video rounded-t-lg mb-4">
         <Link to={paths.app.watch.getHref(id)}>
           <Image src={thumbnail} alt={'Imagem do video'} />

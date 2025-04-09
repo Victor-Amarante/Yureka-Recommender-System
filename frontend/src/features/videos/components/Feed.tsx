@@ -1,4 +1,3 @@
-import { mockVideo } from '../types/Video';
 import { VideoPreview } from './VideoPreview/VideoPreview';
 import { useRecommendations } from '../api/get-recommendations';
 import { VideoPreviewSkeletons } from './VideoPreview/VideoPreviewSkeletons';

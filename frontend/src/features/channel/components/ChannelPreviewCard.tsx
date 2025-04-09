@@ -37,8 +37,7 @@ const mockChannel = {
     },
     {
       id: 'XJ5ObcTsTf4',
-      thumbnail:
-        'https://i9.ytimg.com/vi/XJ5ObcTsTf4/hqdefault_custom_3.jpg?sqp=CND50L8G-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLD3FrnHiJar5CbotqD9pGIJamD5ZA',
+      thumbnail: 'https://i.ytimg.com/vi_webp/XJ5ObcTsTf4/maxresdefault.webp',
       title: 'o que acontece se voce parar??? | Pensando Alto #23',
       views: 12000,
     },

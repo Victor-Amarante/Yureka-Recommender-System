@@ -94,7 +94,7 @@ export default function WatchPage() {
                 className="text-2xl font-bold text-white"
                 style={{ fontFamily: 'var(--font-space-grotesk)' }}
               >
-                Como identificar gente chata
+                Sobre o MEDO de mudar de opinião | Pensando Alto #24
               </h1>
 
               <Button
