@@ -1,4 +1,3 @@
-import { mockVideo } from '../types/Video';
 import { VideoPreview } from './VideoPreview/VideoPreview';
 import { useRecommendations } from '../api/get-recommendations';
 import { VideoPreviewSkeletons } from './VideoPreview/VideoPreviewSkeletons';
@@ -40,7 +39,7 @@ export function Feed() {
         render={(videos) => (
           <div className="size-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {videos.map((video) => (
-              <VideoPreview key={video.id} {...mockVideo()} />
+              <VideoPreview key={video.id} {...video} />
             ))}
           </div>
         )}

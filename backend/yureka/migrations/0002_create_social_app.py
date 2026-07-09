@@ -31,6 +31,7 @@ class Migration(migrations.Migration):
     dependencies = [
         ('sites', '0002_alter_domain_unique'),
         ('socialaccount', '0003_extra_data_default_dict'),
+        ('yureka', '0001_initial'),
     ]
 
     operations = [

@@ -1,88 +1,57 @@
+import axios from 'axios';
 import { configureAuth } from 'react-query-auth';
 import { Navigate, useLocation } from 'react-router';
-import { z } from 'zod';
 
 import { paths } from '@/config/paths';
-import { AuthResponse, User } from '@/types/api';
+import { User } from '@/types/api';
 
 import { api } from './api-client';
 
-// api call definitions for auth (types, schemas, requests):
-// these are not part of features as this is a module shared across features
-
-const getUser = async (): Promise<User> => {
-  const response = await api.get('/auth/me');
-
-  return response.data;
+const getUser = async (): Promise<User | null> => {
+  const token = localStorage.getItem('access_token');
+  if (!token) return null;
+  try {
+    const response = await api.get('/auth/me');
+    return response.data.data;
+  } catch (error) {
+    if (axios.isAxiosError(error) && [401, 403, 404].includes(error.response?.status ?? 0)) {
+      return null;
+    }
+    throw error;
+  }
 };
 
-const logout = (): Promise<void> => {
-  return api.post('/auth/logout');
+// loginFn recebe o Google credential token como string
+const loginFn = async (credential: string): Promise<User> => {
+  const response = await api.post('/auth/google/', { credential });
+  const { access, refresh, user } = response.data.data;
+  localStorage.setItem('access_token', access);
+  localStorage.setItem('refresh_token', refresh);
+  return user;
 };
 
-export const loginInputSchema = z.object({
-  email: z.string().min(1, 'Required').email('Invalid email'),
-  password: z.string().min(5, 'Required'),
-});
-
-export type LoginInput = z.infer<typeof loginInputSchema>;
-const loginWithEmailAndPassword = (data: LoginInput): Promise<AuthResponse> => {
-  return api.post('/auth/login', data);
+const logoutFn = async (): Promise<void> => {
+  localStorage.removeItem('access_token');
+  localStorage.removeItem('refresh_token');
 };
 
-export const registerInputSchema = z
-  .object({
-    email: z.string().min(1, 'Required'),
-    firstName: z.string().min(1, 'Required'),
-    lastName: z.string().min(1, 'Required'),
-    password: z.string().min(5, 'Required'),
-  })
-  .and(
-    z
-      .object({
-        teamId: z.string().min(1, 'Required'),
-        teamName: z.null().default(null),
-      })
-      .or(
-        z.object({
-          teamName: z.string().min(1, 'Required'),
-          teamId: z.null().default(null),
-        }),
-      ),
-  );
-
-export type RegisterInput = z.infer<typeof registerInputSchema>;
-
-const registerWithEmailAndPassword = (
-  data: RegisterInput,
-): Promise<AuthResponse> => {
-  return api.post('/auth/register', data);
+const registerFn = async (_data: unknown): Promise<User> => {
+  throw new Error('Registro direto não suportado. Use o login com Google.');
 };
 
-const authConfig = {
+export const { useUser, useLogin, useLogout, useRegister, AuthLoader } = configureAuth({
   userFn: getUser,
-  loginFn: async (data: LoginInput) => {
-    const response = await loginWithEmailAndPassword(data);
-    return response.user;
-  },
-  registerFn: async (data: RegisterInput) => {
-    const response = await registerWithEmailAndPassword(data);
-    return response.user;
-  },
-  logoutFn: logout,
-};
-
-export const { useUser, useLogin, useLogout, useRegister, AuthLoader } =
-  configureAuth(authConfig);
+  loginFn,
+  logoutFn,
+  registerFn,
+});
 
 export const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
   const user = useUser();
   const location = useLocation();
 
   if (!user.data) {
-    return (
-      <Navigate to={paths.auth.login.getHref(location.pathname)} replace />
-    );
+    return <Navigate to={paths.landing.getHref()} replace state={{ from: location }} />;
   }
 
   return children;

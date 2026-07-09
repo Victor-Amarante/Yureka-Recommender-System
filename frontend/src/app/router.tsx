@@ -4,11 +4,9 @@ import { createBrowserRouter } from 'react-router';
 import { RouterProvider } from 'react-router/dom';
 
 import { paths } from '@/config/paths';
+import { ProtectedRoute } from '@/lib/auth';
 
-import {
-  default as AppRoot,
-  ErrorBoundary as AppRootErrorBoundary,
-} from './routes/app/root';
+import { default as AppRoot, ErrorBoundary as AppRootErrorBoundary } from './routes/app/root';
 
 const convert = (queryClient: QueryClient) => (m: any) => {
   const { clientLoader, clientAction, default: Component, ...rest } = m;
@@ -27,11 +25,19 @@ export const createAppRouter = (queryClient: QueryClient) =>
       lazy: () => import('./routes/landing').then(convert(queryClient)),
     },
     {
+      path: paths.onboarding.topics.path,
+      lazy: () => import('./routes/onboarding/topics').then(convert(queryClient)),
+    },
+    {
+      path: paths.onboarding.routine.path,
+      lazy: () => import('./routes/onboarding/routine').then(convert(queryClient)),
+    },
+    {
       path: paths.app.root.path,
       element: (
-        // <ProtectedRoute>
-        <AppRoot />
-        // </ProtectedRoute>
+        <ProtectedRoute>
+          <AppRoot />
+        </ProtectedRoute>
       ),
       ErrorBoundary: AppRootErrorBoundary,
       children: [
@@ -43,10 +49,6 @@ export const createAppRouter = (queryClient: QueryClient) =>
           path: paths.app.watch.path,
           lazy: () => import('./routes/app/watch').then(convert(queryClient)),
         },
-        // {
-        //   path: paths.app.users.path,
-        //   lazy: () => import('./routes/app/users').then(convert(queryClient)),
-        // },
       ],
     },
     {
@@ -57,8 +59,6 @@ export const createAppRouter = (queryClient: QueryClient) =>
 
 export const AppRouter = () => {
   const queryClient = useQueryClient();
-
   const router = useMemo(() => createAppRouter(queryClient), [queryClient]);
-
   return <RouterProvider router={router} />;
 };
